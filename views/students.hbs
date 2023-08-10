@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <main class="col-md-12">
+      <!-- Start your code here -->
+      <form method="POST" action="/student/update/{{viewData.student.studentNum}}">
+        <fieldset>
+          <legend>Personal Information</legend>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>First Name:</label>
+                <input class="form-control" name="firstName" type="text" value="{{viewData.student.firstName}}" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Last Name:</label>
+                <input class="form-control" name="lastName" type="text" value="{{viewData.student.lastName}}" />
+              </div>
+            </div>
+          </div>
+          <!-- Other personal info fields here -->
+        </fieldset>
+        <fieldset>
+          <legend>Academic Information</legend>
+          <div class="row">
+            <div class="col-md-4">
+              <label>College Employment:</label><br />
+              <!-- Checkbox input here -->
+              <br />
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Enrollment Status:</label><br />
+                <!-- Radio buttons input here -->
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="course">Enrolled in Course:</label>
+                <select class="form-control" id="course" name="course">
+                  <option value="">Select Course</option>
+                  {{#each viewData.courses}}
+                  <option value="{{courseId}}" {{#if selected}} selected {{/if}}>{{courseCode}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <hr />
+        <input type="submit" class="btn btn-primary float-right" value="Update Student" /><br /><br /><br />
+      </form>
+      <!-- End your code here -->
+    </main>
+  </div>
+</div>

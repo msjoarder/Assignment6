@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        {{#if viewData.student}}
+        <h2>{{viewData.student.firstName}} {{viewData.student.lastName}}</h2>
+        <p>Email: <a href="mailto:{{viewData.student.email}}">{{viewData.student.email}}</a></p>
+        <p>Address: {{viewData.student.addressStreet}}, {{viewData.student.addressCity}},
+          {{viewData.student.addressProvince}}</p>
+        <p>Status: {{viewData.student.status}}</p>
+        <hr>
+        <h3>Course</h3>
+        <form method="post" action="/student/update">
+          <input type="hidden" name="studentNum" value="{{viewData.student.studentNum}}">
+          <div class="form-group">
+            <label for="course">Select Course:</label>
+            {{#if viewData.courses}}
+            <select class="form-control" name="course" id="course">
+              <option value="">Select Course</option>
+              {{#each viewData.courses}}
+              <option value="{{courseId}}" {{#if selected}}selected{{/if}}>{{courseCode}}</option>
+              {{/each}}
+            </select>
+            {{else}}
+            <div>No Courses</div>
+            {{/if}}
+          </div>
+          <button type="submit" class="btn btn-primary">Update Course</button>
+        </form>
+        {{else}}
+        <p>Student not found.</p>
+        {{/if}}
+        <br>
+        <a href="/students" class="btn btn-secondary">Back to Students</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
